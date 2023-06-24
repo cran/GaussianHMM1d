@@ -3,7 +3,7 @@
 #'@description This function computes the inverse distribution function of a mixture of
 #' Gaussian univariate distributions
 #'
-#'@param p       Points in (0,1) at which the distribution function is comptuted (nx1);
+#'@param p       Points in (0,1) at which the distribution function is computed (nx1);
 #'@param mu      vector of means for each regime (r x 1);
 #'@param sigma   vector of standard deviations for each regime (r x 1);
 #'@param w       vector of the probability of each regime (r x 1).

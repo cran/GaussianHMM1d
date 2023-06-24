@@ -4,8 +4,7 @@
 \alias{GofHMM1d}
 \title{Goodness-of-fit test of a univariate Gaussian Hidden Markov Model}
 \usage{
-GofHMM1d(y, reg, max_iter = 10000, prec = 1e-04, n_sample = 1000,
-  n_cores)
+GofHMM1d(y, reg, max_iter = 10000, prec = 1e-04, n_sample = 1000, n_cores)
 }
 \arguments{
 \item{y}{(n x 1) data vector}

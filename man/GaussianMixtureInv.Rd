@@ -7,7 +7,7 @@
 GaussianMixtureInv(p, mu, sigma, w)
 }
 \arguments{
-\item{p}{Points in (0,1) at which the distribution function is comptuted (nx1);}
+\item{p}{Points in (0,1) at which the distribution function is computed (nx1);}
 
 \item{mu}{vector of means for each regime (r x 1);}
 
