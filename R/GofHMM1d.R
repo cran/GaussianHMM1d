@@ -7,7 +7,7 @@
 #'@param       y         (n x 1) data vector
 #'@param       reg       number of regimes
 #'@param       max_iter  maxmimum number of iterations of the EM algorithm; suggestion 10 000
-#'@param       prec      precision (stopping criteria); suggestion 0.0001
+#'@param       eps       eps (stopping criteria); suggestion 0.0001
 #'@param       n_sample  number of bootstrap samples; suggestion 1000
 #'@param       n_cores   number of cores to use in the parallel computing
 #'
@@ -31,7 +31,7 @@
 #'\donttest{
 #'Q <- matrix(c(0.8, 0.3, 0.2, 0.7),2,2); mu <- c(-0.3 ,0.7) ; sigma <- c(0.15,0.05)
 #'data <- Sim.HMM.Gaussian.1d(mu,sigma,Q,eta0=1,100)$x
-#'gof <- GofHMM1d(data, 2, max_iter=10000, prec=0.0001, n_sample=100,n_cores=2)
+#'gof <- GofHMM1d(data, 2, max_iter=10000, eps=0.0001, n_sample=100,n_cores=2)
 #'}
 #'@importFrom doParallel registerDoParallel
 #'@importFrom parallel makeCluster stopCluster
@@ -42,14 +42,14 @@
 #'
 
 
-GofHMM1d <-function(y, reg, max_iter=10000, prec=0.0001, n_sample=1000,n_cores){
+GofHMM1d <-function(y, reg, max_iter=10000, eps=0.0001, n_sample=1000,n_cores){
   cl <- makeCluster(n_cores)
   registerDoParallel(cl)
 
 
   #n_cores = detectCores()-2;
 
-  out0 = EstHMM1d(y,reg,max_iter, prec);
+  out0 = EstHMM1d(y,reg,max_iter, eps);
   print("End of estimation");
 
   mu       = out0$mu;
@@ -63,10 +63,10 @@ GofHMM1d <-function(y, reg, max_iter=10000, prec=0.0001, n_sample=1000,n_cores){
   LL       = out0$LL;
 
   n= length(y);
- fun = c('Sim.Markov.Chain','Sim.HMM.Gaussian.1d','EstHMM1d','Sn','bootstrapfun','em.step')
+ fun = c('Sim.Markov.Chain','Sim.HMM.Gaussian.1d','EstHMM1d','Sn','bootstrapfun')
 
- # result <- foreach(i=1:n_sample, .packages='GaussianHMM1d') %dopar% bootstrapfun(mu,sigma,Q,max_iter,prec,n)
-  result <- foreach(i=1:n_sample, .export=fun) %dopar% bootstrapfun(mu,sigma,Q,max_iter,prec,n)
+ # result <- foreach(i=1:n_sample, .packages='GaussianHMM1d') %dopar% bootstrapfun(mu,sigma,Q,max_iter,eps,n)
+  result <- foreach(i=1:n_sample, .export=fun, .packages="GaussianHMM1d") %dopar% bootstrapfun(mu,sigma,Q,max_iter,eps,n)
 
   cvm_sim = rep(0,n_sample)
   for (i in 1:n_sample){

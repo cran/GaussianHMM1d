@@ -4,7 +4,7 @@
 \alias{GofHMM1d}
 \title{Goodness-of-fit test of a univariate Gaussian Hidden Markov Model}
 \usage{
-GofHMM1d(y, reg, max_iter = 10000, prec = 1e-04, n_sample = 1000, n_cores)
+GofHMM1d(y, reg, max_iter = 10000, eps = 1e-04, n_sample = 1000, n_cores)
 }
 \arguments{
 \item{y}{(n x 1) data vector}
@@ -13,7 +13,7 @@ GofHMM1d(y, reg, max_iter = 10000, prec = 1e-04, n_sample = 1000, n_cores)
 
 \item{max_iter}{maxmimum number of iterations of the EM algorithm; suggestion 10 000}
 
-\item{prec}{precision (stopping criteria); suggestion 0.0001}
+\item{eps}{eps (stopping criteria); suggestion 0.0001}
 
 \item{n_sample}{number of bootstrap samples; suggestion 1000}
 
@@ -46,7 +46,7 @@ using parametric bootstrap.
 \donttest{
 Q <- matrix(c(0.8, 0.3, 0.2, 0.7),2,2); mu <- c(-0.3 ,0.7) ; sigma <- c(0.15,0.05)
 data <- Sim.HMM.Gaussian.1d(mu,sigma,Q,eta0=1,100)$x
-gof <- GofHMM1d(data, 2, max_iter=10000, prec=0.0001, n_sample=100,n_cores=2)
+gof <- GofHMM1d(data, 2, max_iter=10000, eps=0.0001, n_sample=100,n_cores=2)
 }
 }
 \references{

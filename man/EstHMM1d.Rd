@@ -4,7 +4,7 @@
 \alias{EstHMM1d}
 \title{Estimation of a univariate Gaussian Hidden Markov Model (HMM)}
 \usage{
-EstHMM1d(y, reg, max_iter = 10000, prec = 1e-04)
+EstHMM1d(y, reg, max_iter = 10000, eps = 1e-04)
 }
 \arguments{
 \item{y}{(nx1) vector of data}
@@ -13,7 +13,7 @@ EstHMM1d(y, reg, max_iter = 10000, prec = 1e-04)
 
 \item{max_iter}{maximum number of iterations of the EM algorithm; suggestion 10 000}
 
-\item{prec}{precision (stopping criteria); suggestion 0.0001.}
+\item{eps}{precision (stopping criteria); suggestion 0.0001.}
 }
 \value{
 \item{mu}{estimated mean for each regime}
@@ -28,7 +28,7 @@ EstHMM1d(y, reg, max_iter = 10000, prec = 1e-04)
 
 \item{cvm}{Cramér-von Mises statistic for the goodness-of-fit test}
 
-\item{W}{Pseudo-observations that should be uniformly distributed under the null hypothesis of a Gaussian HMM}
+\item{U}{Pseudo-observations that should be uniformly distributed under the null hypothesis of a Gaussian HMM}
 
 \item{LL}{Log-likelihood}
 }
@@ -42,7 +42,7 @@ A Cramér-von Mises test statistic is then computed.
 \examples{
 Q <- matrix(c(0.8, 0.3, 0.2, 0.7),2,2); mu <- c(-0.3 ,0.7) ; sigma <- c(0.15,0.05)
 data <- Sim.HMM.Gaussian.1d(mu,sigma,Q,eta0=1,100)$x
-est <- EstHMM1d(data, 2, max_iter=10000, prec=0.0001)
+est <- EstHMM1d(data, 2, max_iter=10000, eps=0.0001)
 
 }
 \references{
