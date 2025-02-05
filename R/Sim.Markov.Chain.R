@@ -3,16 +3,17 @@
 #'@description This function generates a Markov chain X(1), ..., X(n) with transition matrix Q,
 #' starting from a state eta0.
 #'
-#'@param  Q Transition probality matrix (r x r);
+#'@param  Q Transition probability matrix (r x r);
 #'@param  n length of series;
-#'@param  eta0 inital value in {1,...,r}.
+#'@param  eta0 inital value in (1,...,r).
 #'
 #'@author Bouchra R Nasri  and Bruno N Rémillard, January 31, 2019
 #'
 #'@return \item{x}{Simulated Markov chain}
 #'
-#'@examples Q <- matrix(c(0.8, 0.3, 0.2, 0.7),2,2) ;
-#'  sim <- Sim.Markov.Chain(Q,eta0=1,n=100)
+#'@examples 
+#'Q <- matrix(c(0.8, 0.3, 0.2, 0.7),2,2) ;
+#'sim <- Sim.Markov.Chain(Q,eta0=1,n=100)
 #'
 #'@export
 #'

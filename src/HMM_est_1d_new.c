@@ -222,9 +222,9 @@ double Sn_1d( double *U, double N) /** U is a sequence of pseudo-observations of
          for(k=0;k<m;k++)
          {     
             z = (R[i] - mu[k])/sigma[k];
-            g[k][i] = exp(-0.5*z*z)/sigma[k];
+            g[k][i] = maxi(exp(-0.5*z*z)/sigma[k],1E-10);
          
-            /*printf("i = %d , k = %d, z=%lf  g = %lf sigma = %lf\n",i,k,z,g[k][i],sigma[k]);*/
+          
          }
       }
    

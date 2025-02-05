@@ -7,11 +7,11 @@
 Sim.Markov.Chain(Q, n, eta0)
 }
 \arguments{
-\item{Q}{Transition probality matrix (r x r);}
+\item{Q}{Transition probability matrix (r x r);}
 
 \item{n}{length of series;}
 
-\item{eta0}{inital value in {1,...,r}.}
+\item{eta0}{inital value in (1,...,r).}
 }
 \value{
 \item{x}{Simulated Markov chain}
@@ -22,7 +22,7 @@ starting from a state eta0.
 }
 \examples{
 Q <- matrix(c(0.8, 0.3, 0.2, 0.7),2,2) ;
- sim <- Sim.Markov.Chain(Q,eta0=1,n=100)
+sim <- Sim.Markov.Chain(Q,eta0=1,n=100)
 
 }
 \author{
